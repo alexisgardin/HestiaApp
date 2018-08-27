@@ -92,13 +92,5 @@
   "House": {
     "dataSource": "postgres",
     "public": true
-  },
-  "Book": {
-    "dataSource": "postgres",
-    "public": true
-  },
-  "Auhtor": {
-    "dataSource": "postgres",
-    "public": true
   }
 }

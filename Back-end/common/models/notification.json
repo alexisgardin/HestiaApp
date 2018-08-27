@@ -2,33 +2,15 @@
   "name": "Notification",
   "plural": "Notifications",
   "base": "PersistedModel",
-  "idInjection": false,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
-  },
-  "foreignKeys": {
-    "memberId": {
-      "name": "memberId",
-      "foreignKey": "memberId",
-      "entityKey": "id",
-      "entity": "member"
-    }
   },
   "properties": {
     "unread": {
       "type": "boolean",
       "required": true,
       "default": true
-    },
-    "memberId": {
-      "type": "number",
-      "id": true,
-      "required": true
-    },
-    "issueId": {
-      "type": "number",
-      "id": true,
-      "required": true
     }
   },
   "validations": [],

@@ -2,18 +2,16 @@
   "name": "IssueMember",
   "plural": "IssuesMembers",
   "base": "PersistedModel",
-  "properties": {
+  "properties":
+  {
     "issueId": {
-      "type": {
-        "id": true
-      }
+      "id": true
     },
     "memberId": {
-      "type": {
-        "id": true
-      }
+      "id": true
     }
-  },
+  }
+,
   "validations": [],
   "relations": {
     "issue": {
