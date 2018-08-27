@@ -1,0 +1,57 @@
+/deep/ .ui-carousel-item {
+    background: #CCC !important;
+    text-align: center;
+}
+
+.ui-carousel-item > img {
+    min-height: 100%;
+    max-height: 100%;
+}
+
+/deep/ .circle {
+    object-fit: cover;
+    object-position: center;
+}
+
+.custom-card-item {
+    text-align: justify;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+h5 {
+    font-size: 12px;
+    color: darkcyan;
+}
+
+.issue-label {
+    margin: 15px 0 5px 0;
+}
+
+hr {
+    border: none;
+    border-bottom: 1px solid darkcyan;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.dialog-title-div {
+    display: inline-block;
+}
+
+#state-container {
+    margin: 0;
+    font-size: 16px;
+    text-align: right;
+}
+
+#priority {
+    margin: 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+#title-container {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,60 @@
+.date-text{
+    font-size: 1.5vh !important;
+}
+
+.no-bottom-top-margin{
+    margin: 0px;
+   padding: 0px;
+}
+
+.margin-top{
+    margin-top: 25% !important;
+}
+
+.no-padding-left{
+    padding-left: 0px !important;
+}
+
+.no-bottom-margin{
+    margin-bottom: 0px !important;
+}
+
+.mycircle {
+    display: block;
+    height: 1vw;
+    width: 1vw !important;
+    padding: 3% 3%;
+    background: red;
+    border-radius: 50%;
+    margin: auto;
+  }
+
+  .border-bottom {
+      border-bottom:1px;
+      border-bottom-style: solid;
+      border-bottom-color: #bdbdbd;
+  }
+  
+.border {
+    border-left: 4px;
+    border-left-style: solid;
+    border-left-color: lightblue; 
+    border-bottom: 0px;
+    
+}
+
+  .options{
+    float: left !important;
+    position: absolute;
+    height: 100%;
+    width: 33.33%
+  }
+
+  .pointer {
+      cursor: pointer;
+  }
+
+  .title {
+    font-weight: bold;
+  }
+

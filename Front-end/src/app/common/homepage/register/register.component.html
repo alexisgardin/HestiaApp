@@ -1,0 +1,113 @@
+<particles [style]="style" [width]="100" [height]="100" [params]="params"></particles>
+<div>
+  <!--  <div class="center">
+      <img src="../assets/images/homepage/smart_home.png" alt="" class="topImage circle responsive-img">
+    </div> -->
+  <div class="row">
+    <mat-horizontal-stepper class="stepper z-depth-5 col l6 offset-l3" [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="registerForm">
+        <form [formGroup]="registerForm" class="stepform">
+          <ng-template matStepLabel>Remplissez vos information personnelles</ng-template>
+          <div class="row">
+            <mat-form-field class="col m6">
+              <input class="mat-input" matInput placeholder="Nom" formControlName="lastname" type="text" required>
+            </mat-form-field>
+            <mat-form-field class="col m6">
+              <input class="mat-input" matInput placeholder="Prénom" formControlName="firstname" required>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col m12">
+              <input class="mat-input" matInput placeholder="Email" formControlName="email" required type="email">
+            </mat-form-field>
+            <div class="alert col s11" *ngIf="email_reg.errors && (email_reg.dirty || email_reg.touched)">
+              <span *ngIf="email_reg.errors.required">Ce champ est requis</span>
+              <span *ngIf="email_reg.errors.pattern">Veuillez rentrez une adresse email valide</span>
+            </div>
+          </div>
+          <div class="row">
+            <mat-form-field class="col m6">
+              <input class="mat-input" matInput placeholder="Mot de passe" formControlName="password" required type="password">
+            </mat-form-field>
+            <mat-form-field class="col m6">
+              <input class="mat-input" matInput placeholder="Confirmation de mot de passe" formControlName="confirmPassword_reg"
+                     required
+                     type="password">
+            </mat-form-field>
+            <div class="alert col s11 " *ngIf="password_reg.errors && (password_reg.touched || password_reg.dirty)">
+              <span
+                *ngIf="password_reg.errors.minlength">Le mot de passe est trop petit (8 caractéres nécessaires)</span>
+              <span *ngIf="password_reg.errors.required">Ce champ est requis</span>
+            </div>
+            <div class="alert col s11"
+                 *ngIf="confirmPassword_reg.errors && (confirmPassword_reg.touched || confirmPassword_reg.dirty)">
+              <span *ngIf="confirmPassword_reg.errors.minlength">Le mot de passe est trop petit (8 caractéres nécessaires)</span>
+              <span *ngIf="confirmPassword_reg.errors.required">Ce champ est requis</span>
+              <span
+                *ngIf="!confirmPassword_reg.errors.minlength && !confirmPassword_reg.errors.required && confirmPassword_reg.errors.matchOther">Les mots de passes ne coresspondent pas</span>
+            </div>
+          </div>
+          <div>
+            <button class="btn color-secondary" style="float: right" mat-button matStepperNext>Suivant</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="adressForm">
+        <form [formGroup]="adressForm" class="stepform">
+          <ng-template matStepLabel>Veuillez rentrer les coordonnées de la maison</ng-template>
+          <div class="row">
+            <mat-form-field class="col m12">
+              <input class="mat-input" matInput placeholder="Adresse (ex : 210 avenue du roumanille)" formControlName="street" required>
+            </mat-form-field>
+            <div class="row">
+              <mat-form-field class="col m5">
+                <input class="mat-input" matInput placeholder="Département (ex : 06410)" formControlName="departement" required>
+              </mat-form-field>
+            </div>
+            <mat-form-field class="col m6">
+              <input class="mat-input" matInput placeholder="Ville (ex : Biot)" formControlName="city" required>
+            </mat-form-field>
+            <mat-form-field class="col m6">
+              <input class="mat-input" matInput placeholder="Pays (ex : France)" formControlName="country" required>
+            </mat-form-field>
+          </div>
+          <div>
+            <button class="btn color-secondary-dark" style="float: left" mat-button matStepperPrevious>Précédent</button>
+            <button class="btn color-secondary" style="float: right" mat-button matStepperNext>Suivant</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Validation</ng-template>
+        <blockquote *ngIf="!waitingEmail">
+          En cliquant sur valider vous valider les informations rentrées précédemment, merci de bien vérifier quelle sont corrects.
+        </blockquote>
+        <div class="center" *ngIf="waitingEmail&&!emailValidate">
+          <div class="sk-folding-cube">
+            <div class="sk-cube1 sk-cube"></div>
+            <div class="sk-cube2 sk-cube"></div>
+            <div class="sk-cube4 sk-cube"></div>
+            <div class="sk-cube3 sk-cube"></div>
+          </div>
+          <h5>En attente de validation d'email</h5>
+        </div>
+        <div *ngIf="emailValidate" class="center">
+          <i class="large material-icons">
+            email
+          </i>
+          <h5>L'email a bien été validé, vous aller être redirigé vers la page de connexion dans quelques secondes</h5>
+        </div>
+        <div class="row" *ngIf="alreadyExistEmail">
+          <div class="alert center-align">
+            <i class="material-icons prefix warning">warning</i>
+            <span>Adresse email déjà existante</span>
+          </div>
+        </div>
+        <div *ngIf="!waitingEmail&&!emailValidate">
+          <button class="btn color-secondary-dark" style="float: left" mat-button matStepperPrevious>Précédent</button>
+          <button class="btn color-secondary" style="float: right" mat-button (click)="onRegistration()">Valider</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+</div>

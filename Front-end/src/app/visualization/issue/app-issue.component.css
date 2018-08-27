@@ -1,0 +1,49 @@
+.card-image {
+    height: 150px;
+    text-align: center;
+}
+
+.card-image > img {
+    min-height: 100%;
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.title_first {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+}
+
+.title_and_icon {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.col {
+    padding: 0px !important;
+}
+
+.icon_title {
+    padding-left: 10px !important;
+}
+
+.icon_title:hover {
+    cursor: pointer;
+}
+
+p {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.resolved {
+    filter: grayscale(100%);
+}
+
+.button_resolved {
+    visibility: hidden;
+}

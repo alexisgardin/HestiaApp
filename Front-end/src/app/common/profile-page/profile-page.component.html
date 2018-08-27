@@ -1,0 +1,82 @@
+<mat-card class="profile-card" *ngIf="!loading">
+  <div class="profile-header">
+    <img class="circle" [src]="src" alt="image de profil">
+    <h2>{{user.firstname + ' ' + user.lastname}}</h2>
+    <h3>{{user.email}}</h3>
+  </div>
+
+  <mat-card-content class="profile-body">
+    <h5 class="profile-label">Modifier son image de profil</h5>
+    <hr>
+    <image-upload
+            url="{{getUploadUrl(user)}}"
+            [max]="1"
+            [headers]="{Authorization: getToken()}"
+            [buttonCaption]="'Charger une image'"
+            [dropBoxMessage]="'Glissez votre image ici'"
+            (uploadFinished)="onUploadFinished($event)"
+            [extensions]="['jpg','png','jpeg']">
+    </image-upload>
+
+    <h5 class="issue-label">Role</h5>
+    <hr>
+    <div class="row" *ngFor="let role of user.roles">
+      <span>{{role.name}}</span>
+    </div>
+
+    <h5 class="issue-label">Changement de mot de passe</h5>
+    <hr>
+    <div class="row">
+      <form [formGroup]="passwordForm" class="login-form">
+
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">lock_outline</i>
+            <input formControlName="old_pwd" id="old" type="password">
+            <label for="old" data-error="wrong" data-success="right">Ancien mot de passe</label>
+            <div class="alert col s11" *ngIf="form_old.errors && (form_old.dirty || form_old.touched)">
+              <span *ngIf="form_old.errors.required">Ce champ est requis</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">lock_outline</i>
+            <input formControlName="new_pwd" id="new" type="password">
+            <label for="new" data-error="wrong" data-success="right">Nouveau mot de passe</label>
+            <div class="alert col s11" *ngIf="form_new.errors && (form_new.dirty || form_new.touched)">
+              <span *ngIf="form_new.errors.required">Ce champ est requis</span>
+              <span *ngIf="form_new.errors.minlength">Le mot de passe est trop petit (8 caractères nécessaires)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">lock_outline</i>
+            <input formControlName="confirm_pwd" id="confirm" type="password">
+            <label for="confirm" data-error="wrong" data-success="right">Confirmation du mot de passe</label>
+            <div class="alert col s11" *ngIf="form_confirm.errors && (form_confirm.dirty || form_confirm.touched)">
+              <span *ngIf="form_confirm.errors.required">Ce champ est requis</span>
+              <span *ngIf="form_confirm.errors.minlength">Le mot de passe est trop petit (8 caractères nécessaires)</span>
+              <span *ngIf="!form_confirm.errors.minlength && !form_confirm.errors.required && form_confirm.errors.matchOther">
+                Les mots de passe ne correspondent pas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-field col s12">
+          <button (click)="onChangePassword()" [disabled]="passwordForm.invalid"
+                  class="btn large waves-effect waves-light">
+            Modifier le mot de passe
+          </button>
+        </div>
+      </form>
+
+    </div>
+
+  </mat-card-content>
+</mat-card>
+
+<mat-spinner *ngIf="loading"></mat-spinner>

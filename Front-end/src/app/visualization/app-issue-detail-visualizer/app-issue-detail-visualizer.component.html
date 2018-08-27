@@ -1,0 +1,82 @@
+<div id="title-container" mat-dialog-title>
+    <h4 id="priority" class="dialog-title-div">Urgence : {{issueElement.priority.name}}</h4>
+
+    <div id="state-container" class="dialog-title-div">
+        <div *ngIf="issueElement.state.value === 1" class="green-text">
+            Etat de l'incident : terminé<i class="material-icons right">check</i>
+        </div>
+        <div *ngIf="issueElement.state.value === -1" class="red-text">
+            Etat de l'incident : non résolu<i class="material-icons right">error_outline</i>
+        </div>
+        <div *ngIf="issueElement.state.value === 0" class="orange-text">
+            Etat de l'incident : en cours<i class="material-icons right">cached</i>
+        </div>
+    </div>
+</div>
+<mat-dialog-content>
+    <ui-carousel [infinite]="true" [fade]="false" [autoPlay]="false">
+        <ui-carousel-item class="ui-carousel-item" *ngFor="let image of issueElement.images">
+            <img class="activator center responsive-img"
+                 [ui-lazy-load]='"http://localhost:3000/api/ImageFiles/" + image.id + "/download"'>
+        </ui-carousel-item>
+    </ui-carousel>
+
+    <div class="row">
+        <div class="card-content">
+            <div class="card-title">
+                <h4>{{issueElement.title}}</h4>
+            </div>
+
+            <p class="custom-card-item">{{issueElement.description}}</p>
+
+            <h5 class="issue-label">Niveau d'importance</h5>
+            <hr>
+            <p class="custom-card-item">{{issueElement.importance.name}}</p>
+
+            <h5 class="issue-label">Type de l'incident</h5>
+            <hr>
+            <p class="custom-card-item">{{issueElement.type.name}}</p>
+
+            <h5 class="issue-label">Auteur</h5>
+            <hr>
+            <p class="custom-card-item">{{issueElement.author.firstname + ' ' + issueElement.author.lastname}}</p>
+
+            <h5 class="issue-label">Emplacement</h5>
+            <hr>
+            <p class="custom-card-item">{{issueElement.location.name}}</p>
+
+            <h5 class="issue-label">Déclaration</h5>
+            <hr>
+            <p class="custom-card-item">{{formatDate(issueElement.datetime_declaration)}}</p>
+
+            <h5 class="issue-label">Limite de résolution</h5>
+            <hr>
+            <p class="custom-card-item">{{formatDate(issueElement.datetime_deadline)}}</p>
+
+            <div *ngIf="issueElement.state.value === 1">
+                <h5 class="issue-label">Résolution</h5>
+                <hr>
+                <p class="custom-card-item">{{formatDate(issueElement.datetime_resolution)}}</p>
+            </div>
+
+            <div *ngIf="(assignedMembers | async)?.length != 0">
+                <div *ngIf="(assignedMembers | async)?.length == 1">
+                    <h5 class="issue-label">Membre assigné</h5>
+                    <hr>
+                </div>
+                <div *ngIf="(assignedMembers | async)?.length > 1">
+                    <h5 class="issue-label">Membres assignés</h5>
+                    <hr>
+                </div>
+            </div>
+            <ul class="collection" *ngFor="let member of assignedMembers | async">
+                <li class="collection-item avatar">
+                    <img src="http://localhost:3000/api/ImageFiles/{{member.profileImage.id}}/download" alt=""
+                         class="circle">
+                    <span class="title">{{member.firstname + ' ' + member.lastname}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+  <app-comment [issue]="issueElement"></app-comment>
+</mat-dialog-content>

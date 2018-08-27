@@ -1,0 +1,42 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "postgres": {
+    "host": "localhost",
+    "port": 5432,
+    "url": "",
+    "database": "hestiadb",
+    "password": "TT829",
+    "name": "postgres",
+    "user": "hestia",
+    "connector": "postgresql"
+  },
+  "emailManager": {
+    "name": "emailManager",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "SMTP",
+        "host": "smtp.gmail.com",
+        "secure": true,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "port": 465,
+        "auth": {
+          "user": "hestia.polytech@gmail.com",
+          "pass": "hestiaps6"
+        }
+      }
+    ]
+  },
+  "images": {
+    "name": "images",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "uploads/images",
+    "nameConflict": "makeUnique"
+  }
+}

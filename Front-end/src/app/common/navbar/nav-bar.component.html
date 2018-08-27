@@ -1,0 +1,93 @@
+<header class="main-header">
+
+  <!-- Logo -->
+  <a routerLink="/home" routerLinkActive="active" target="_self" class="logo">
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <img src="/assets/images/logohestia.png" class="logo-mini"/>
+    <!-- logo for regular state and mobile devices -->
+    <span class="logo-lg">
+    <img src="/assets/images/logohestia.png" class="logo-mini"/>Hestia</span>
+  </a>
+
+  <!-- Header Navbar: style can be found in header.less -->
+  <div class="navbar navbar-static-top">
+    <!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <span class="sr-only"></span>
+    </a>                    <!-- Navbar Right Menu -->
+    <app-notification class="navbar-right-elem right"></app-notification>
+  </div>
+</header>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+    <a routerLink="/home/profile">
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img *ngIf="imageProfileId"
+               src="http://localhost:3000/api/ImageFiles/{{imageProfileId}}/download"
+               class="circle responsive-img" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p class="connected">{{nameConnect}}</p>
+          <a><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+    </a>
+
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu">
+      <li class="treeview">
+        <a routerLink="/home/welcome">
+          <i class="fa fa-tachometer"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li *ngIf="isAdmin |async" class="treeview">
+        <a routerLink="/home/admin/house">
+          <i class="fa fa-home"></i>
+          <span>Mon adresse</span>
+        </a>
+      </li>
+      <li *ngIf="isAdmin | async" class="treeview">
+        <a href="#">
+          <i class="fa fa-wrench"></i>
+          <span>Administration</span>
+          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a routerLink="/home/admin/members" routerLinkActive="active" target="_self">
+              <i class="fa fa-users"></i>
+              <span>Gestion des membres</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/home/admin/types" routerLinkActive="active" target="_self">
+              <i class="fa fa-list-alt"></i>
+              <span>Gestion des types d'incident</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/home/admin/locations" routerLinkActive="active" target="_self">
+              <i class="fa fa-location-arrow"></i>
+              <span>Gestion des emplacements</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a routerLink="/home/issues">
+          <i class="fa fa-fire"></i>
+          <span>Incidents</span>
+        </a>
+      </li>
+      <li class="treeview">
+      <li><a href="#" (click)="disconnect()"><i class="fa fa-power-off"></i><span>Déconnexion</span></a>
+      </li>
+    </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>
+

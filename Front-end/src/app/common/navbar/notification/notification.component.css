@@ -1,0 +1,27 @@
+.fa-stack {
+  color: red;
+}
+
+.number {
+  color: white;
+}
+
+a {
+  color: white;
+}
+.notifications:before {
+  font-family: FontAwesome;
+  content: "\f0a2";
+}
+
+#dropdown1 {
+  margin-top: 32px;
+}
+
+.dropdown-content {
+  min-width: 200px !important;
+}
+
+.dropdown-content li > a {
+  font-size: 14px !important;
+}

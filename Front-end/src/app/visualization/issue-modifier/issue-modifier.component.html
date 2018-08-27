@@ -1,0 +1,118 @@
+<h2 mat-dialog-title>Modification d'un incident</h2>
+
+<mat-dialog-content class="dialog-content">
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="Ex : WC bouchés" id="issue_title" type="text" class="validate"
+               [(ngModel)]="this.titleValue"
+               [ngModelOptions]="{standalone: true}"/>
+        <label for="issue_title">Titre de l'incident</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="Ex : exemple de description" id="issue_description" type="text" class="validate"
+               [(ngModel)]="this.descriptionValue" [ngModelOptions]="{standalone: true}"/>
+        <label for="issue_description">Description</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <image-upload
+              url="{{getUploadUrl()}}"
+              [headers]="{Authorization: getToken()}"
+              (removed)="onRemoved($event)"
+              [buttonCaption]="'Charger des images'"
+              [dropBoxMessage]="'Glissez vos images ici'"
+              [extensions]="['jpg','png','jpeg']"
+              [uploadedFiles]="images">
+      </image-upload>
+    </div>
+
+        <div class="row">
+            <div class="col s12">
+                <label>
+                    Emplacement de l'incident
+                    <select [(ngModel)]="this.locationValue" materialize="material_select"
+                            [ngModelOptions]="{standalone: true}">
+                        <option *ngFor="let location of locations"
+                                [selected]="location.name === this.issueElement.location.name ? 'selected' : 'false'"
+                                [value]="location.value">
+                          {{location.name}}
+                        </option>
+                    </select>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <label>
+                    Type d'incident
+                    <select [(ngModel)]="this.typeValue" materialize="material_select"
+                            [ngModelOptions]="{standalone: true}">
+                        <option *ngFor="let type of this.types"
+                                [selected]="type.name === this.issueElement.type.name ? 'selected' : 'false'"
+                                [value]="type.value">
+                          {{type.name}}
+                        </option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+    <div class="row">
+      <div *ngIf="issueElement.state?.value == 1" class="green-text col s12">
+        <i class="material-icons left">check</i>Etat de l'incident : terminé
+      </div>
+      <div *ngIf="issueElement.state?.value == -1" class="red-text col s12">
+        <i class="material-icons left">error_outline</i>Etat de l'incident : refusé
+      </div>
+      <div *ngIf="issueElement.state?.value == 0" class="orange-text col s12">
+        <i class="material-icons left">cached</i>Etat de l'incident : en cours
+      </div>
+    </div>
+
+    <div class="row">
+      <div *ngIf="issueElement.state?.value !== 1">
+        <div [ngSwitch]="issueElement.state?.value">
+          <div *ngSwitchCase="-1">
+            <a class="btn red white-text col l4 m12 s12 disabled"><i class="material-icons left">error_outline</i>Refuser</a>
+            <a class="btn orange white-text col l4 m12 s12" (click)="showAssign()"><i
+                    class="material-icons left">cached</i>Attribuer</a>
+            <a class="btn green white-text col l4 m12 s12 disabled"><i class="material-icons left">check</i>Terminer</a>
+          </div>
+          <div *ngSwitchCase="0">
+            <a class="btn red white-text col l4 m12 s12" (click)="cancelIssue()"><i
+                    class="material-icons left">error_outline</i>Refuser</a>
+            <a class="btn orange white-text col l4 m12 s12" (click)="showAssign()"><i
+                    class="material-icons left">cached</i>Attribuer</a>
+            <a class="btn green white-text col l4 m12 s12" (click)="closeIssue()"><i
+                    class="material-icons left">check</i>Terminer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="this.displayAssign">
+      <app-assigned-members [issueElement]="issueElement" class="assignedMember"></app-assigned-members>
+    </div>
+
+    <!--<div class="row" *ngFor="let priority of this.priorities">
+      <input class="btn with-gap" type="button" value="{{priority.name}}"/>
+    </div>-->
+
+    <!--<div class="row">
+      <p class="range-field">
+        <input type="range" min="0" max="100" step="50" [(ngModel)]="this.stateValue"
+               [ngModelOptions]="{standalone: true}"/>
+      </p>
+    </div>-->
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-footer">
+  <button class="btn red button-left" mat-button mat-dialog-close><i class="material-icons center">clear</i></button>
+  <button class="btn green button-right" mat-button (click)="validDialog()"><i class="material-icons center">check</i>
+  </button>
+</mat-dialog-actions>

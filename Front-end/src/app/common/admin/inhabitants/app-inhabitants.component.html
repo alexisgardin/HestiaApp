@@ -1,0 +1,11 @@
+<div class="row" *ngIf="(this.inhabitantService.inhabitantsList$ | async)?.length>0">
+  <div *ngFor="let inhabitant of this.inhabitantService.inhabitantsList$ | async">
+    <app-inhabitant [inhabitantElement]="inhabitant"></app-inhabitant>
+  </div>
+</div>
+<div *ngIf="(this.inhabitantService.inhabitantsList$ | async)?.length==0" class="row col l12 m12 s12 z-depth-3">
+  <div class="center-align">
+    <i class="large material-icons center">warning</i>
+    <p>Aucune personne liée à ce foyer</p>
+  </div>
+</div>

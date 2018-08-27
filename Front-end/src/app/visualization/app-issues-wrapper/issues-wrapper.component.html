@@ -1,0 +1,15 @@
+<div>
+  <div class="buttons">
+    <a class="btn-floating btn-large waves-effect waves-light {{!displayList ? 'disabled' : ''}}" (click)="switchDisplay(false)"><i
+      class="fa fa-address-card"></i></a>
+    <a class="btn-floating btn-large waves-effect waves-light {{displayList ? 'disabled' : ''}}" (click)="switchDisplay(true)"><i
+      class="fa fa-list"></i></a>
+  </div>
+  <app-search-bar (refreshEvent)="issuesTable.refresh()" #searchBar></app-search-bar>
+  <div class="table" [ngStyle]="{'display': displayList ? '' : 'none' }">
+    <app-issues-table #issuesTable [searchPipe]="searchBar.searchPipe" [searchBar]="searchBar"></app-issues-table>
+  </div>
+  <div class="table" [ngStyle]="{'display': !displayList ? '' : 'none' }">
+    <app-issues [searchTerm]="searchBar.searchTerm" [filters]="searchBar.filters"></app-issues>
+  </div>
+</div>

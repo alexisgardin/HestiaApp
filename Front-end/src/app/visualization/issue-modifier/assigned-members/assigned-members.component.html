@@ -1,0 +1,8 @@
+<angular2-multiselect class="assignedMember" [data]="inhabitantList"
+                      [(ngModel)]="selectedItems"
+                      [settings]="settings"
+                      (onSelect)="onItemSelect($event)"
+                      (onDeSelect)="OnItemDeSelect($event)"
+                      (onSelectAll)="onSelectAll($event)"
+                      (onDeSelectAll)="onDeSelectAll($event)">
+</angular2-multiselect>

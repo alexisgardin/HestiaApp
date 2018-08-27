@@ -1,0 +1,34 @@
+<table mat-table [dataSource]="datasource" matSort
+       matSortActive="numberOfResolvedIssue" matSortDirection="desc" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header=""> Nom </th>
+    <td mat-cell *matCellDef="let element" > {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="numberOfAssignedIssue">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre d'incident assignés </th>
+    <td class="center" mat-cell *matCellDef="let element"> {{element.numberOfAssignedIssue}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="numberOfResolvedIssue">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre d'incident assignés résolu </th>
+    <td class="center" mat-cell *matCellDef="let element"> {{element.numberOfResolvedIssue}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="averageTimeForResolve">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Temps moyen de résolution (jours) </th>
+    <td class="center" mat-cell *matCellDef="let element"> {{element.averageTimeForResolve}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+</table>
+<mat-paginator #paginator
+               [length]="length | async"
+               [pageSize]="5"
+               [pageSizeOptions]="[5, 10, 20, 50, 100]"
+               [showFirstLastButtons]="true">
+</mat-paginator>

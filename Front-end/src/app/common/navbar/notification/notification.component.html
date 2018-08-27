@@ -1,0 +1,14 @@
+<a materialize="dropdown" class="dropdown-button notifications" data-activates="dropdown1"
+   (click)="readNotificationOfUser()">
+<span class="fa-stack">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <strong class="fa-stack-1x number">{{this.notificationService.numberOfUnread | async}}</strong>
+</span>
+</a>
+<ul id='dropdown1' class='dropdown-content'>
+  <span *ngFor="let notif of (this.notificationService.notificationsList$ | async)">
+  <li>  <a [routerLink]="['/home/issues']">{{notif?.issue?.title}}</a></li>
+    <li class="divider"></li>
+  </span>
+
+</ul>

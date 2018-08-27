@@ -1,0 +1,29 @@
+.navbar-right-elem {
+    padding: 15px 15px;
+    background: transparent none;
+    height: 50px;
+    color: white;
+}
+
+.navbar-right-elem:hover {
+    color: #f6f6f6;
+    background-color: #d73925;
+    cursor: pointer;
+}
+
+.connected {
+    font-size: 12px;
+}
+
+.text-success {
+    color: #3c763d;
+}
+
+.user-panel > .image > img {
+    background-color: white;
+    width: 45px !important;
+    height: 45px !important;
+    border: 0;
+    object-fit: cover; /* Do not scale the image */
+    object-position: center; /* Center the image within the element */
+}

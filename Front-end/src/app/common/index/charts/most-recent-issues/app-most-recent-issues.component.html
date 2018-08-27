@@ -1,0 +1,8 @@
+<div class="row col s4 m4 l4">
+    <ul class="collection with-header z-depth-3">
+        <li class="collection-header center-align"><h6>{{numberOfIssues}} derniers incidents déclarés</h6></li>
+        <app-most-recent-issue-element *ngFor="let issue of (this.issues | async)"
+                                       [issue]="issue"></app-most-recent-issue-element>
+    </ul>
+</div>
+

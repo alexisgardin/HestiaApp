@@ -1,0 +1,7 @@
+.mat-sort-header-button{
+  background: white !important;
+}
+
+button:focus{
+  background: white !important;
+}

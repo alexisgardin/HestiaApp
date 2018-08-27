@@ -1,0 +1,10 @@
+input {
+  border-bottom: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  height: 3rem!important;
+}
+
+.form-house{
+  padding: 20px;
+}

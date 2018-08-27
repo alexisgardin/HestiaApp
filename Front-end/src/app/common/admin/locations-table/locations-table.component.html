@@ -1,0 +1,50 @@
+<div class="mat-elevation-z8">
+
+    <h2 class="mat-table-title">Administration des emplacements</h2>
+
+    <mat-table #table [dataSource]="dataSource" matSort aria-label="Administration des emplacements">
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Nom de l'emplacement</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+        </ng-container>
+
+        <!-- Edit Column -->
+        <ng-container matColumnDef="edit">
+            <mat-header-cell *matHeaderCellDef>Editer</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <a class="btn-floating btn-small waves-effect waves-light color-secondary" (click)="editElement(row)"><i
+                        class="fa fa-edit"></i></a>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [length]="dataSource.length | async"
+                   [pageIndex]="0"
+                   [pageSize]="20"
+                   [pageSizeOptions]="[20, 50, 100, 250]">
+    </mat-paginator>
+
+    <div class="row footer">
+        <div class="col s12">
+            <div class="input-field inline footer-input" style="width: 40%;">
+                <input id="add_element" matInput type="text" (keyup)="onInputChange($event)">
+                <label for="add_element">Ajouter un emplacement</label>
+            </div>
+            <a class="btn-floating btn-small waves-effect waves-light color-secondary" (click)="onAddElement()">
+                <i class="fa fa-plus-circle"></i>
+            </a>
+        </div>
+    </div>
+</div>

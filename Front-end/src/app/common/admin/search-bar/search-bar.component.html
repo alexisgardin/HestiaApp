@@ -1,0 +1,24 @@
+<div class="z-depth-3">
+  <div class="searchbar row">
+    <div class="col offset-m5 offset-s3 m2 s6">
+      <h5>Administration des membres</h5>
+    </div>
+
+    <div id="addMember" class="modal col s12 m6 offset-m3 l4 offset-l4 z-depth-6" materialize="modal"
+         [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+      <div class="modal-content">
+        <div class="row">
+          <app-inhabitant-modifier (closeEvent)='closeModal()'></app-inhabitant-modifier>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s2 offset-s1">
+        <button type="button" class="btn waves-effect waves-light color-secondary" (click)="addMember()">
+          Ajouter membre
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<particles [style]="style" [width]="100" [height]="100" [params]="params"></particles>
+<div>
+  <!-- Content -->
+  <div class="container">
+    <div class="row center">
+      <div class="col s12 white-text">
+        <h1 class="welcomeMessage">Bienvenue sur Hestia</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col login z-depth-4 row s12 m8 offset-m2 offset-l3 l6">
+          <form [formGroup]="loginForm" class="login-form">
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">mail_outline</i>
+                <input formControlName="email" id="email" type="email">
+                <label for="email" data-error="wrong" data-success="right">Email</label>
+                <div class="alert col s11 offset-s1" *ngIf="email_log.errors && (email_log.dirty || email_log.touched)">
+                  <span *ngIf="email_log.errors.required">Ce champ est requis</span>
+                  <span *ngIf="email_log.errors.pattern">Veuillez rentrez une adresse email valide</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 color-secondary-dark-text">
+                <i class="material-icons prefix">lock_outline</i>
+                <input formControlName="password" id="password" type="password">
+                <label for="password">Password</label>
+                <div class="alert col s11 offset-s1"
+                     *ngIf="password_log.errors && (password_log.dirty || password_log.touched)">
+                  <span *ngIf="password_log.errors.required">Ce champ est requis</span>
+                  <span
+                    *ngIf="password_log.errors.minlength">Le mot de passe est trop petit (8 caractères nécessaires)</span>
+                </div>
+              </div>
+            </div>
+              <div class="input-field col s12">
+                <button href="#" (click)="onLogin()" [disabled]="loginForm.invalid"
+                        class="btn large waves-effect waves-light col s8 offset-s2 m6 offset-m3 offset-l4 l4 color-secondary">Se connecter
+                </button>
+              </div>
+            <div class="row" *ngIf="errorLog">
+              <div class="alert center-align">
+                <i class="material-icons prefix warning">warning</i>
+                <span>Mauvais mot de passe ou nom d'utilisateur</span>
+              </div>
+            </div>
+              <div class="input-field right">
+                <p class="margin right-align medium-small"><a href="#">Mot de passe oublié ?</a></p>
+              </div>
+          </form>
+      </div>
+    </div>
+  </div>
+
+
+

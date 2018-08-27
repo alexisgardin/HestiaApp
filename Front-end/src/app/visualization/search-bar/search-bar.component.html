@@ -1,0 +1,79 @@
+<div class="z-depth-3 white">
+    <div class="searchbar">
+        <div class="center">
+            <h5>Filtres de recherche</h5>
+        </div>
+        <div class="row">
+            <form class="form-group">
+                <div class="col l3">
+                    <p>
+                        <input type="radio" name="test" class="with-gap" id="all" (click)="showAll()" checked/>
+                        <label for="all">Tous les incidents</label>
+                    </p>
+                    <p>
+                        <input type="radio" name="test" class="with-gap" id="declared" (click)="showDeclared()"/>
+                        <label for="declared">Mes incidents déclarés</label>
+                    </p>
+                    <p>
+                        <input type="radio" name="test" class="with-gap" id="assigned" (click)="showAssigned()"/>
+                        <label for="assigned">Mes incidents assignés</label>
+                    </p>
+                </div>
+                <div class="col l5 input-field input-search black-text">
+                    <input id="search" class="form-control" placeholder="Search" type="search"
+                           [formControl]="searchField">
+                    <label class="label-icon black-text" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+                <div class="col l4 s12">
+                    <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">bookmark_border</i>Filtres</div>
+                            <div class="collapsible-body">
+                                <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header">Etat incident</div>
+                                        <div class="collapsible-body">
+                                            <div *ngFor="let state of this.stateList">
+                                                <p>
+                                                    <input type="checkbox" class="filled-in" id="filter-{{state.name}}"
+                                                           (change)="onSwitchCheckbox($event)"/>
+                                                    <label for="filter-{{state.name}}">{{state.name}}</label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header">Type d'incident</div>
+                                        <div class="collapsible-body">
+                                            <div *ngFor="let type of this.typeList">
+                                                <p>
+                                                    <input type="checkbox" class="filled-in" id="filter-{{type.name}}"
+                                                           (change)="onSwitchCheckbox($event)"/>
+                                                    <label for="filter-{{type.name}}">{{type.name}}</label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header">Urgence</div>
+                                        <div class="collapsible-body">
+                                            <div *ngFor="let priority of this.priorityList">
+                                                <p>
+                                                    <input type="checkbox" class="filled-in"
+                                                           id="filter-{{priority.name}}"
+                                                           (change)="onSwitchCheckbox($event)"/>
+                                                    <label for="filter-{{priority.name}}">{{priority.name}}</label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+.assignedMember .c-token{
+  background: #FF9800!important;
+}
+.assignedMember .pure-checkbox label::before {
+  border-color: #FF9800 !important;
+}
+.assignedMember .pure-checkbox input[type="checkbox"]:checked + label[_ngcontent-c1]:before {
+  background: #FF9800 !important;
+}
+.pure-checkbox [type="checkbox"]:checked + label::before{
+  transform: none!important;
+  background: #FF9800 !important;
+}

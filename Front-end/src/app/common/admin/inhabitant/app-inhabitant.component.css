@@ -1,0 +1,27 @@
+.halfway-fab-third {
+  position: absolute;
+  bottom: -20px;
+  display: inline-block !important;
+}
+
+.member {
+  margin-bottom: 30px;
+}
+
+.modal{
+  left:0px!important;
+}
+
+P{
+  word-wrap:break-word;
+  font-size: 1em;
+}
+img{
+  height: 110px;
+  width: 110px;
+}
+.card{
+  height: 200px;
+  padding: 10px!important;
+
+}

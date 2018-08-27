@@ -1,0 +1,36 @@
+<div class="card z-depth-4">
+    <div [ngClass]="{'resolved' : issueElement.state?.value == 1}"
+         class="card-image waves-effect waves-block waves-light" (click)="viewIssueDetails()">
+        <img class="activator center responsive-img"
+             src="http://localhost:3000/api/ImageFiles/{{issueElement.images[0]?.id}}/download">
+    </div>
+    <div [ngClass]="{'resolved' : issueElement.state?.value == 1}" class="card-content black-text">
+        <div class="row title_and_icon">
+            <span class="card-title title_first col s11" title="{{issueElement.title}}">{{issueElement.title}}</span>
+            <i class="icon_title material-icons right activator col s1" (click)="viewIssueDetails()">more_horiz</i>
+        </div>
+        <div *ngIf="issueElement.state?.value == 1" class="green-text">
+            <i title="{{issueElement.state.name}}"
+               class="icon_title material-icons small right activator col s1">check</i>
+        </div>
+        <div *ngIf="issueElement.state?.value == -1" class="red-text">
+            <i title="{{issueElement.state.name}}" class="icon_title material-icons small right activator col s1">error_outline</i>
+        </div>
+        <div *ngIf="issueElement.state?.value == 0" class="orange-text">
+            <i title="{{issueElement.state.name}}"
+               class="icon_title material-icons small right activator col s1">cached</i>
+        </div>
+        <p title="{{issueElement.state?.name}}">
+            Etat de l'incident : {{issueElement.state?.name}}
+        </p>
+        <p title="{{issueElement.type?.name}}">
+            Type de l'incident : {{issueElement.type?.name}}
+        </p>
+        <p title="{{issueElement.author?.firstname + ' '+issueElement.author?.lastname}}">
+            Auteur : {{issueElement.author?.firstname + ' '+issueElement.author?.lastname}}
+        </p>
+        <a [ngClass]="{'button_resolved': issueElement.state?.value == 1}" class="btn-floating blue darken-1 right"
+           (click)="openModifyIssueModal()"><i
+                class="material-icons">create</i></a>
+    </div>
+</div>

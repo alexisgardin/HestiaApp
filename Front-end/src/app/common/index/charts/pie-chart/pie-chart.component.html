@@ -1,0 +1,8 @@
+<div class="col s12 m12 l6 ">
+  <div class="z-depth-4 pieCharts white">
+    <div *ngIf="(this.issueService.issuesList$ |async)?.length<1" class="center">
+      <h5>Pas de données pour afficher le graphique</h5>
+    </div>
+    <canvas id="pie-chart"></canvas>
+  </div>
+</div>

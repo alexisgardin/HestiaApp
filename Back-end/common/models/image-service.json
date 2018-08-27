@@ -1,0 +1,14 @@
+{
+  "name": "ImageService",
+  "plural": "ImagesService",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

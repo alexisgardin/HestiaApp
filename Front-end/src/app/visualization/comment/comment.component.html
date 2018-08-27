@@ -1,0 +1,34 @@
+<div class="commentary">
+  <div class="col s12 comments-container">
+    <ul *ngIf="(commentService.issueCommentaries$ | async)?.length > 0"  id="comments-list" class="comments-list">
+      <li  *ngFor="let comment of commentService.issueCommentaries$ | async">
+        <div class="comment-main-level">
+          <div class="comment-avatar"><img
+            src="http://localhost:3000/api/ImageFiles/{{comment.profileImageId}}/download" alt=""></div>
+          <div class="comment-box">
+            <div class="comment-head">
+              <h6 class="comment-name by-author" [ngClass]="{'by-author': comment.isAuthor()}">
+                {{comment.author.firstname +" "+ comment.author.lastname}}</h6>
+              <span>{{formatDate(comment.datetime_declaration)}}</span>
+            </div>
+            <div class="comment-content">
+              {{comment.content}}
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="row">
+      <form>
+        <div class="col s12">
+          <mat-form-field class="col s11">
+            <textarea [formControl]="comment" matInput placeholder="Laisser un commentaire"></textarea>
+          </mat-form-field>
+          <button class="btnsend btn-floating waves-effect waves-light blue" (click)="onClickSendButton()" type="submit" name="action">
+            <i class="material-icons">send</i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
